@@ -21,7 +21,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use("/", express.static(path.join(__dirname, "/public")));
-app.get("/", require("./routes/root"));
+app.use("/", require("./routes/root"));
+app.use("/users", require("./routes/user"));
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
